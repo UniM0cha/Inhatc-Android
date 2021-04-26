@@ -4,64 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button"
-        android:background="#0000ff"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:paddingLeft="100dp"
-        android:layout_marginLeft="25dp"
-        android:text="첫번째 버튼" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="두번째 버튼" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#0000ff"
-        android:text="Name"
-        android:textColor="#ff0000"
-        android:textSize="20pt"
-        android:textStyle="italic"
-        android:typeface="serif"
-        android:inputType="none"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/editTextTextPersonName7"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:inputType="textPersonName"
-            android:text="left" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:inputType="textPersonName"
-            android:text="center" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            
-            android:inputType="textPersonName"
-            android:text="right" />
-    </LinearLayout>
 
 </LinearLayout>

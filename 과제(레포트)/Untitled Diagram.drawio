@@ -1,11 +1,14 @@
-<mxfile host="app.diagrams.net" modified="2021-05-21T06:35:34.060Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15" etag="xnID9uJ87KcMLsNCylNL" version="14.6.13" type="github">
+<mxfile host="app.diagrams.net" modified="2021-05-21T06:47:40.972Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15" etag="i4z92Iut4holPqxYe2lv" version="14.6.13" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="830" dy="550" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1657" dy="550" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
-        <mxCell id="oJdP31qRSWy8eakDv5FF-8" value="todayMonth = 현재 날짜에서 월 추출&lt;br&gt;serviceMonth[] = 서비스별 갱신일에서 월 추출&lt;br&gt;sumSubFee = 이번 달 총 구독료" style="whiteSpace=wrap;html=1;rounded=1;shadow=0;strokeWidth=1;glass=0;arcSize=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="60" y="150" width="320" height="60" as="geometry" />
+        <mxCell id="oJdP31qRSWy8eakDv5FF-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oJdP31qRSWy8eakDv5FF-8" target="oJdP31qRSWy8eakDv5FF-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-8" value="todayMonth = 현재 날짜에서 월 추출&lt;br&gt;serviceMonth[] = 서비스별 갱신일에서 월 추출&lt;br&gt;serviceFee[] = 서비스별 구독료&lt;br&gt;sumFee = 이번 달 총 구독료" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;shadow=0;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;strokeColor=#000000;strokeWidth=1;fillColor=#ffffff;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="60" y="150" width="320" height="70" as="geometry" />
         </mxCell>
         <mxCell id="oJdP31qRSWy8eakDv5FF-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="WIyWlLk6GJQsqaUBKTNV-3" target="oJdP31qRSWy8eakDv5FF-8">
           <mxGeometry relative="1" as="geometry" />
@@ -13,11 +16,43 @@
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-3" value="앱 실행" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="160" y="80" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="oJdP31qRSWy8eakDv5FF-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oJdP31qRSWy8eakDv5FF-8" target="oJdP31qRSWy8eakDv5FF-10">
+        <mxCell id="oJdP31qRSWy8eakDv5FF-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oJdP31qRSWy8eakDv5FF-21" target="oJdP31qRSWy8eakDv5FF-28">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oJdP31qRSWy8eakDv5FF-10" value="todayMonth == serviceMonth[]" style="rhombus;whiteSpace=wrap;html=1;rounded=1;shadow=0;strokeWidth=1;glass=0;arcSize=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="100" y="280" width="240" height="80" as="geometry" />
+        <mxCell id="oJdP31qRSWy8eakDv5FF-21" value="i 를 serviceMonth 크기만큼 반복" style="swimlane;startSize=23;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-55" y="250" width="550" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-10" value="todayMonth == serviceMonth[i]" style="rhombus;whiteSpace=wrap;html=1;rounded=1;shadow=0;strokeWidth=1;glass=0;arcSize=0;" vertex="1" parent="oJdP31qRSWy8eakDv5FF-21">
+          <mxGeometry x="35" y="50" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-14" value="sumFee += serviceFee" style="whiteSpace=wrap;html=1;rounded=1;shadow=0;strokeWidth=1;glass=0;arcSize=0;" vertex="1" parent="oJdP31qRSWy8eakDv5FF-21">
+          <mxGeometry x="335" y="60" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-15" value="True" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="oJdP31qRSWy8eakDv5FF-21" source="oJdP31qRSWy8eakDv5FF-10" target="oJdP31qRSWy8eakDv5FF-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-25" value="False" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="oJdP31qRSWy8eakDv5FF-21" source="oJdP31qRSWy8eakDv5FF-10" target="oJdP31qRSWy8eakDv5FF-10">
+          <mxGeometry x="-0.5238" relative="1" as="geometry">
+            <mxPoint x="215" y="120" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="155" y="140" />
+              <mxPoint x="25" y="140" />
+              <mxPoint x="25" y="30" />
+              <mxPoint x="155" y="30" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oJdP31qRSWy8eakDv5FF-28" target="oJdP31qRSWy8eakDv5FF-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-28" value="subFee를 레이블에 적용" style="whiteSpace=wrap;html=1;fontStyle=1;startSize=23;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="150" y="440" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oJdP31qRSWy8eakDv5FF-30" value="끝" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="510" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

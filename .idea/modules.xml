@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AndroidPractice.iml" filepath="$PROJECT_DIR$/.idea/AndroidPractice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SubscribeManager.iml" filepath="$PROJECT_DIR$/.idea/modules/SubscribeManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SubscribeManager.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SubscribeManager.app.iml" />
     </modules>
   </component>
 </project>

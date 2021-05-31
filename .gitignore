@@ -18,3 +18,7 @@ SubscribeManager/local.properties
 SubscribeManager/.idea/workspace.xml
 SubscribeManager/local.properties
 SubscribeManager/.idea/workspace.xml
+SubscribeManager/.idea/compiler.xml
+SubscribeManager/.idea/gradle.xml
+SubscribeManager/.idea/misc.xml
+SubscribeManager/build.gradle

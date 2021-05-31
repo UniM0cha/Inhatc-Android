@@ -1,0 +1,5 @@
+com/example/subscribe_manager/BuildConfig.java
+ com.example.subscribe_manager.BuildConfig
+com/example/subscribe_manager/MainActivity.java
+ com.example.subscribe_manager.MainActivity
+ com.example.subscribe_manager.MainActivity$CustomList

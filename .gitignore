@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+SubscribeManager/.idea/workspace.xml
+SubscribeManager/local.properties

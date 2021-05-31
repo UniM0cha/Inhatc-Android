@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">SubscribeManager</string>
+    <string name="app_name">구독 관리 앱</string>
+
+    <string name="services_prompt">please select Services</string>
+    <string-array name="services">
+        <item>Youtube</item>
+        <item>Netflix</item>
+        <item>Apple Music</item>
+    </string-array>
 </resources>

@@ -1,69 +1,153 @@
 package com.example.subscribemanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
-    Date today = new Date();
 
+    Calendar today = Calendar.getInstance();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. M. dd.");
     ListView list;
-    String[] names = {
-            "Youtube Premium",
-            "Netflix",
-            "Apple Music",
-    };
+    Vector<String> names = new Vector<>(100);
+    Vector<Integer> images = new Vector<>(100);
+    Vector<Integer> prices = new Vector<>(100);
+    Vector<String> starts = new Vector<>(100);
+    Vector<String> nexts = new Vector<>(100);
 
-    Integer[] images = {
-            R.drawable.logo_youtube,
-            R.drawable.logo_netflix,
-            R.drawable.logo_applemusic
-    };
-
-    String[] prices = {
-            "8,690원",
-            "9,500원",
-            "8,900원"
-    };
-
-    String[] starts = {
-            "가입일 : 2020. 2. 19.",
-            "가입일 : 2019. 8. 12.",
-            "가입일 : 2015. 1. 28."
-    };
-
-    String[] nextDates = {
-            "갱신일 : 2020. 5. 19.",
-            "갱신일 : 2020. 6. 12.",
-            "갱신일 : 2021. 1. 28."
-    };
-
+    //옵션 메뉴 설정
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.mymenu, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.addService:
+                addService();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addService() {
+        final Dialog addDialog = new Dialog(this);
+        addDialog.setContentView(R.layout.custom_dialog);
+        addDialog.setTitle("서비스 추가");
+        addDialog.show();
+    }
+
+    //onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         CustomList adapter = new CustomList(MainActivity.this);
         list = (ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
+
+        TextView title = findViewById(R.id.Title);
+        title.setText(today.get(Calendar.MONTH) + 1 + "월의 남은 구독료");
+
+        //값 초기화 부분
+        String[] arrNames = {
+                "Youtube Premium",
+                "Netflix",
+                "Apple Music"
+        };
+        for(String s : arrNames)
+            names.add(s);
+
+        int[] arrImages = {
+                R.drawable.logo_youtube,
+                R.drawable.logo_netflix,
+                R.drawable.logo_applemusic
+        };
+        for(int i : arrImages)
+            images.add(i);
+
+        Integer[] arrPrices = {
+                8690,
+                9500,
+                8900
+        };
+        for(Integer i : arrPrices)
+            prices.add(i);
+
+        String[] arrStarts = {
+                "2020. 12. 15.",
+                "2019. 8. 12.",
+                "2015. 1. 28."
+        };
+        for(String s : arrStarts)
+            starts.add(s);
+
+        for(int i = 0; i < starts.size(); i++){
+            nexts.add(sdf.format(calculateNextDate(i).getTime()));
+        }
+        //값 초기화 끝
+
+        //이번달 남은 구독료 계산
+        int sum = 0;
+        Calendar nextDate = Calendar.getInstance();
+        for (int i = 0; i < starts.size(); i++) {
+            try {
+                nextDate.setTime(sdf.parse(nexts.get(i)));
+                if (nextDate.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
+                    sum += prices.get(i);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            TextView priceSum = findViewById(R.id.Sum);
+            priceSum.setText(NumberFormat.getInstance().format(sum) + "원");
+        }
+        //계산 끝
+
+//        TextView testText = findViewById(R.id.testText);
+    }
+
+    private Calendar calculateNextDate(int position) {
+        Calendar nextDay = Calendar.getInstance();
+        try {
+            nextDay.setTime(sdf.parse(starts.get(position)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        while(nextDay.compareTo(today) < 0){
+           nextDay.add(Calendar.MONTH, 1);
+        }
+        return nextDay;
     }
 
     private class CustomList extends ArrayAdapter<String> {
@@ -81,12 +165,24 @@ public class MainActivity extends AppCompatActivity {
             TextView price = (TextView) rowView.findViewById(R.id.ServicePrice);
             TextView start = (TextView) rowView.findViewById(R.id.ServiceStart);
             TextView next = (TextView) rowView.findViewById(R.id.ServiceNext);
+            TextView Dday = (TextView) rowView.findViewById(R.id.ServiceDday);
 
-            imageView.setImageResource(images[position]);
-            name.setText(names[position]);
-            price.setText(prices[position]);
-            start.setText(starts[position]);
-            next.setText(nextDates[position]);
+            imageView.setImageResource(images.get(position));
+            name.setText(names.get(position));
+            price.setText(NumberFormat.getInstance().format(prices.get(position)) + "원");
+            start.setText("가입일 : " + starts.get(position));
+            next.setText("갱신일 : " + nexts.get(position));
+            Date nextDate = null;
+            try {
+                nextDate = sdf.parse(nexts.get(position));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            long diff = (nextDate.getTime() - today.getTime().getTime()) / (24*60*60*1000);
+            diff = Math.abs(diff);
+            Dday.setText("D-" + diff);
+
             return rowView;
         }
     }

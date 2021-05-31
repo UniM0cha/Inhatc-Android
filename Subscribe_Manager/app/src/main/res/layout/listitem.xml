@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/ServiceImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/ServiceName"
+        android:layout_toRightOf="@id/ServiceImage"
+        android:layout_alignTop="@id/ServiceImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/ServicePrice"
+        android:layout_toRightOf="@id/ServiceImage"
+        android:layout_below="@id/ServiceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ServiceStart"
+        android:layout_toRightOf="@id/ServiceImage"
+        android:layout_below="@id/ServicePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ServiceNext"
+        android:layout_toRightOf="@id/ServiceImage"
+        android:layout_below="@id/ServiceStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ServiceDday"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D-1" />
+
+</RelativeLayout>

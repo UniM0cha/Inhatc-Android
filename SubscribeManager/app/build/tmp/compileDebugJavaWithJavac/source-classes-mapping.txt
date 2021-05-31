@@ -1,4 +1,0 @@
-com/example/subscribemanager/BuildConfig.java
- com.example.subscribemanager.BuildConfig
-com/example/subscribemanager/MainActivity.java
- com.example.subscribemanager.MainActivity

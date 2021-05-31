@@ -1,4 +1,0 @@
-#Mon May 31 19:17:15 KST 2021
-base.0=/Users/uni_mocha/Desktop/Android/SubscribeManagerIntelliJ/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

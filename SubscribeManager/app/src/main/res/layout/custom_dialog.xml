@@ -1,31 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/lblTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="구독 서비스 선택"
+        android:text="구독 서비스 추가"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"/>
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"/>
 
-    <TextView
-        android:id="@+id/lblServiceName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lblTitle"
-        android:text="서비스 이름 : " />
-
-    <Spinner
-        android:id="@+id/spinServiceName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/lblServiceName"
-        android:layout_below="@id/lblTitle"
-        android:prompt="@string/services_prompt"/>
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/lblServiceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서비스 이름 : " />
+
+        <Spinner
+            android:id="@+id/spinServiceName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:prompt="@string/services_prompt"
+            android:entries="@array/services"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/lblServicePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblServiceName"
+
+            android:text="가격 : " />
+
+        <EditText
+            android:id="@+id/textServicePrice"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblServiceName"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblStartDate"
+            android:text="구독한 날짜 : "/>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnStartDate"
+            android:text="날짜를 선택해 주세요"
+            android:onClick="onClickDate"/>
+
+    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

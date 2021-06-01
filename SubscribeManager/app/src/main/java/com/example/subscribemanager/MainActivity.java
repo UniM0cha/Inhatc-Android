@@ -1,10 +1,14 @@
 package com.example.subscribemanager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     Vector<Integer> prices = new Vector<>(100);
     Vector<String> starts = new Vector<>(100);
     Vector<String> nexts = new Vector<>(100);
+    Button btnStartDate;
 
     //옵션 메뉴 설정
     @Override
@@ -59,11 +66,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    //서비스 추가 커스텀 다이얼로그
     private void addService() {
         final Dialog addDialog = new Dialog(this);
         addDialog.setContentView(R.layout.custom_dialog);
-        addDialog.setTitle("서비스 추가");
         addDialog.show();
+
+    }
+
+    //DatePickerDialog 띄우기
+    public void onClickDate(View v){
+        final Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Toast.makeText(MainActivity.this, "오류 문제로 추가 기능을 구현하지 못했습니다.", Toast.LENGTH_SHORT).show();
+                //왜 오류가 나는지 진짜 모르겠음
+                //btnStartDate.setText(year +". " + month + ". " + dayOfMonth + ".");
+            }
+        }, mYear, mMonth, mDay);
+
+        datePickerDialog.show();
     }
 
     //onCreate
@@ -71,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnStartDate = findViewById(R.id.btnStartDate);
 
         CustomList adapter = new CustomList(MainActivity.this);
         list = (ListView)findViewById(R.id.list);

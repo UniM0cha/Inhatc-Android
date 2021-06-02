@@ -1,14 +1,13 @@
 package com.example.subscribemanager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.os.Build;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,36 +15,33 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static  ArrayList<String> names = new ArrayList<>();
+    public static ArrayList<Integer> images = new ArrayList<>();
+    public static ArrayList<Integer> prices = new ArrayList<>();
+    public static ArrayList<String> starts = new ArrayList<>();
+    public static ArrayList<String> nexts = new ArrayList<>();
     Calendar today = Calendar.getInstance();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. M. dd.");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy. M. d.");
     ListView list;
-    Vector<String> names = new Vector<>();
-    Vector<Integer> images = new Vector<>();
-    Vector<Integer> prices = new Vector<>();
-    Vector<String> starts = new Vector<>();
-    Vector<String> nexts = new Vector<>();
-    Button btnStartDate;
+    CustomList adapter;
 
     //옵션 메뉴 설정
     @Override
@@ -55,45 +51,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //옵션 메뉴의 아이템 선택되었을 때
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.addService:
-                addService();
+                Intent intent = new Intent(this, AddServiceActivity.class);
+                intent.putExtra("names", names);
+                intent.putExtra("images", images);
+                intent.putExtra("prices", prices);
+                intent.putExtra("starts", starts);
+                intent.putExtra("nexts", nexts);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-
-    //서비스 추가 커스텀 다이얼로그
-    private void addService() {
-        final Dialog addDialog = new Dialog(this);
-        addDialog.setContentView(R.layout.custom_dialog);
-        addDialog.show();
-
-    }
-
-    //DatePickerDialog 띄우기
-    public void onClickDate(View v){
-        final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                Toast.makeText(MainActivity.this, "오류 문제로 추가 기능을 구현하지 못했습니다.", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, year +". " + month + ". " + dayOfMonth + ".", Toast.LENGTH_SHORT).show();
-                //왜 오류가 나는지 진짜 모르겠음
-
-                btnStartDate.setText(year +". " + month + ". " + dayOfMonth + ".");
-            }
-        }, mYear, mMonth, mDay);
-
-        datePickerDialog.show();
     }
 
     //onCreate
@@ -102,9 +75,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnStartDate = findViewById(R.id.btnStartDate);
-
-        CustomList adapter = new CustomList(MainActivity.this);
+        adapter = new CustomList(MainActivity.this);
         list = (ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
 
@@ -123,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         int[] arrImages = {
                 R.drawable.logo_youtube,
                 R.drawable.logo_netflix,
-                R.drawable.logo_applemusic
+                R.drawable.logo_applemusic,
         };
         for(int i : arrImages)
             images.add(i);
@@ -149,24 +120,6 @@ public class MainActivity extends AppCompatActivity {
         }
         //값 초기화 끝
 
-        //이번달 남은 구독료 계산
-        int sum = 0;
-        Calendar nextDate = Calendar.getInstance();
-        for (int i = 0; i < starts.size(); i++) {
-            try {
-                nextDate.setTime(sdf.parse(nexts.get(i)));
-                if (nextDate.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
-                    sum += prices.get(i);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            TextView priceSum = findViewById(R.id.Sum);
-            priceSum.setText(NumberFormat.getInstance().format(sum) + "원");
-        }
-        //계산 끝
-
-//        TextView testText = findViewById(R.id.testText);
     }
 
     private Calendar calculateNextDate(int position) {
@@ -217,5 +170,28 @@ public class MainActivity extends AppCompatActivity {
 
             return rowView;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+
+        //이번달 남은 구독료 계산
+        int sum = 0;
+        Calendar nextDate = Calendar.getInstance();
+        for (int i = 0; i < starts.size(); i++) {
+            try {
+                nextDate.setTime(sdf.parse(nexts.get(i)));
+                if (nextDate.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
+                    sum += prices.get(i);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            TextView priceSum = findViewById(R.id.Sum);
+            priceSum.setText(NumberFormat.getInstance().format(sum) + "원");
+        }
+        //계산 끝
     }
 }

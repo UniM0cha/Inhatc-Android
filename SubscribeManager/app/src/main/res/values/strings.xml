@@ -3,7 +3,7 @@
 
     <string name="services_prompt">please select Services</string>
     <string-array name="services">
-        <item>Youtube</item>
+        <item>Youtube Premium</item>
         <item>Netflix</item>
         <item>Apple Music</item>
     </string-array>

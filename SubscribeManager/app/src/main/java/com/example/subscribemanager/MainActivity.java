@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
     Calendar today = Calendar.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy. M. dd.");
     ListView list;
-    Vector<String> names = new Vector<>(100);
-    Vector<Integer> images = new Vector<>(100);
-    Vector<Integer> prices = new Vector<>(100);
-    Vector<String> starts = new Vector<>(100);
-    Vector<String> nexts = new Vector<>(100);
+    Vector<String> names = new Vector<>();
+    Vector<Integer> images = new Vector<>();
+    Vector<Integer> prices = new Vector<>();
+    Vector<String> starts = new Vector<>();
+    Vector<String> nexts = new Vector<>();
     Button btnStartDate;
 
     //옵션 메뉴 설정
@@ -85,9 +85,11 @@ public class MainActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Toast.makeText(MainActivity.this, "오류 문제로 추가 기능을 구현하지 못했습니다.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "오류 문제로 추가 기능을 구현하지 못했습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, year +". " + month + ". " + dayOfMonth + ".", Toast.LENGTH_SHORT).show();
                 //왜 오류가 나는지 진짜 모르겠음
-                //btnStartDate.setText(year +". " + month + ". " + dayOfMonth + ".");
+
+                btnStartDate.setText(year +". " + month + ". " + dayOfMonth + ".");
             }
         }, mYear, mMonth, mDay);
 
